@@ -35,6 +35,19 @@ def get_old_files(now):
     return old_files, prev_date
 
 
+def write_to_table(arr):
+    if not os.path.exists('../table.csv'):
+        with open('../table.csv', 'a') as f_object:
+            writer_object = writer(f_object)
+            writer_object.writerow(['symbol', 'stream', 'date', 'link'])
+            f_object.close()
+
+    with open('../table.csv', 'a') as f_object:
+        writer_object = writer(f_object)
+        writer_object.writerow(arr)
+        f_object.close()
+
+
 def upload_pipeline(now):
     print('Start Pipeline')
     old_files, prev_date = get_old_files(now)
@@ -45,20 +58,20 @@ def upload_pipeline(now):
         trade_symbol = filename.split('_')[0]
         stream_name = filename.split('_')[1]
 
-        with open('../table.csv', 'a') as f_object:
-            arr = [trade_symbol, stream_name, prev_date, download_link]
-            writer_object = writer(f_object)
-            writer_object.writerow(arr)
-            f_object.close()
-    print('delete files')
-    # delete old logs
-    for filename in old_files:
-        if os.path.exists(os.path.join('logs', filename)):
-            os.remove(os.path.join('logs', filename))
+        write_to_table([trade_symbol, stream_name, prev_date, download_link])
+
+    # print('delete files')
+    # # delete old logs
+    # for filename in old_files:
+    #     if os.path.exists(os.path.join('logs', filename)):
+    #         os.remove(os.path.join('logs', filename))
 
 
 def delete_pipeline(now):
     pass
+
+def push_table():
+
 
 
 if __name__ == '__main__':
@@ -71,10 +84,10 @@ if __name__ == '__main__':
     logs_folder_id = '1OXIgEzY2zJKHqc5EbCqTVtLnJQaM_XmJ'
 
     while True:
-        now = datetime.utcnow() + timedelta(hours=7, minutes=50)
+        now = datetime.utcnow() + timedelta(hours=7, minutes=20)
         print(now)
         if now.hour == 0 and now.minute >= 30:
             upload_pipeline(now)
             delete_pipeline(now)
-
+            push_table()
         time.sleep(60)
