@@ -1,0 +1,86 @@
+<!--https://drive.google.com/file/d/1I06i3lF5rMl57XK43ccyCbO-Yf2w5Vxw/view?usp=share_link-->
+<!--https://drive.google.com/file/d/1K8HFj5KQvelyuHrEubqXjZUKwKBopMHN/view?usp=share_link-->
+<!--https://drive.google.com/file/d/1DPPREImA0uSVSB3Ns0kAKGOWTykY97Ib/view?usp=share_link-->
+
+<!--https://drive.google.com/uc?export=download&id=1I06i3lF5rMl57XK43ccyCbO-Yf2w5Vxw-->
+<!--https://drive.google.com/uc?export=download&id=1K8HFj5KQvelyuHrEubqXjZUKwKBopMHN-->
+<!--https://drive.google.com/uc?export=download&id=1DPPREImA0uSVSB3Ns0kAKGOWTykY97Ib-->
+
+<!--BIG-->
+<!--https://drive.google.com/file/d/1cjH5qgViIcgzRMwW9pMTYkz4oS8MK4wc/view?usp=share_link-->
+<!--https://drive.google.com/file/d/12a2k_7zCIxmJm0_B8w2yGvJcmVh7wJKx/view?usp=share_link-->
+<!--https://drive.google.com/file/d/13p1vKNL14B8VKvL3cAtgtGAVz5Zw2YZB/view?usp=share_link-->
+
+<!--https://drive.google.com/uc?export=download&id=1cjH5qgViIcgzRMwW9pMTYkz4oS8MK4wc-->
+<!--https://drive.google.com/uc?export=download&id=12a2k_7zCIxmJm0_B8w2yGvJcmVh7wJKx-->
+<!--https://drive.google.com/uc?export=download&id=13p1vKNL14B8VKvL3cAtgtGAVz5Zw2YZB==-->
+
+<!--  var myLinksBig = [-->
+<!--    'https://drive.google.com/uc?export=download&id=1cjH5qgViIcgzRMwW9pMTYkz4oS8MK4wc',-->
+<!--    'https://drive.google.com/uc?export=download&id=12a2k_7zCIxmJm0_B8w2yGvJcmVh7wJKx',-->
+<!--    'https://drive.google.com/uc?export=download&id=13p1vKNL14B8VKvL3cAtgtGAVz5Zw2YZB'-->
+<!--  ];-->
+
+
+
+// var myLinks = [
+//   'https://drive.google.com/uc?export=download&id=1I06i3lF5rMl57XK43ccyCbO-Yf2w5Vxw',
+//   'https://drive.google.com/uc?export=download&id=1K8HFj5KQvelyuHrEubqXjZUKwKBopMHN',
+//   'https://drive.google.com/uc?export=download&id=1DPPREImA0uSVSB3Ns0kAKGOWTykY97Ib'
+// ];
+
+// function download() {
+//   const link = document.createElement("a");
+//   link.href = 'https://drive.google.com/uc?export=download&id=1DPPREImA0uSVSB3Ns0kAKGOWTykY97Ib';
+//   link.click();
+// }
+
+// function downloadURI(uri, name) {
+//   var link = document.createElement("a");
+//   link.download = name;
+//   link.href = uri;
+//   document.body.appendChild(link);
+//   link.click();
+//   document.body.removeChild(link);
+//   delete link;
+// }
+//
+// function openMultipleLinks(links) {
+//   for (var i = 0; i < links.length; i++) {
+//     downloadURI(links[i], links[i])
+//   }
+// }
+
+
+
+
+function download_files(files) {
+    function download_next(i) {
+      if (i >= files.length) {
+        return;
+      }
+      var a = document.createElement('a');
+      // a.href = files[i].download;
+      a.target = '_parent';
+      // Use a.download if available, it prevents plugins from opening.
+      if ('download' in a) {
+        a.download = files[i].filename;
+      }
+      // Add a to the doc for click to work.
+      (document.body || document.documentElement).appendChild(a);
+      if (a.click) {
+        a.click(); // The click method is supported by most browsers.
+      } else {
+        $(a).click(); // Backup using jquery
+      }
+      // Delete the temporary link.
+      a.parentNode.removeChild(a);
+      // Download the next file with a small timeout. The timeout is necessary
+      // for IE, which will otherwise only download the first file.
+      setTimeout(function() {
+        download_next(i + 1);
+      }, 500);
+    }
+    // Initiate the first download.
+    download_next(2);
+  }
