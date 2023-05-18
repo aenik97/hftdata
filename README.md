@@ -1,11 +1,9 @@
 # Free Binance hft data for hobby usage
 
-Сollects binance real-time orderbook websockets ([depth](https://binance-docs.github.io/apidocs/spot/en/#partial-book-depth-streams),
-[depth@100ms](https://binance-docs.github.io/apidocs/spot/en/#partial-book-depth-streams),
-[depth10@100ms](https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams),
+Сollects binance real-time orderbook websockets
 [depth20@100ms](https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams),
-[bookTicker](https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams))
-for BTCUSDT, BTCBUSD, ETHUSDT, USDCUSDT, BUSDUSDT spot pairs.
+[bookTicker](https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams)
+for BTCUSDT spot pair.
 <br>
 <br>
 Data will be stored only for the last 2 years.

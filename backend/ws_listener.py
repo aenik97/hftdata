@@ -97,18 +97,18 @@ class LogWriter:
 
 if __name__ == "__main__":
     lw_array = [
-        LogWriter(
-            stream_name=SOCKET_DEPTH,
-            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH}'
-        ),
-        LogWriter(
-            stream_name=SOCKET_DEPTH_100,
-            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_100}'
-        ),
-        LogWriter(
-            stream_name=SOCKET_DEPTH_10_LEVELS_100,
-            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_10_LEVELS_100}'
-        ),
+        # LogWriter(
+        #     stream_name=SOCKET_DEPTH,
+        #     log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH}'
+        # ),
+        # LogWriter(
+        #     stream_name=SOCKET_DEPTH_100,
+        #     log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_100}'
+        # ),
+        # LogWriter(
+        #     stream_name=SOCKET_DEPTH_10_LEVELS_100,
+        #     log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_10_LEVELS_100}'
+        # ),
         LogWriter(
             stream_name=SOCKET_DEPTH_20_LEVELS_100,
             log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_20_LEVELS_100}'
