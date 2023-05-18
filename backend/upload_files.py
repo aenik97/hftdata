@@ -75,24 +75,26 @@ def delete_pipeline(now):
 
 def push_table():
     git_pat = sys.argv[1]
-    args = ['bash', 'autopush', git_pat]
+    args = ['bash', 'autopush.sh', git_pat]
     popen(' '.join(args))
 
 
 if __name__ == '__main__':
-    gauth = GoogleAuth()
-    gauth.LocalWebserverAuth()
+    push_table()
 
-    drive = GoogleDrive(gauth)
-
-    folderName = 'hft_logs'
-    logs_folder_id = '1OXIgEzY2zJKHqc5EbCqTVtLnJQaM_XmJ'
-
-    while True:
-        now = datetime.utcnow() + timedelta(hours=7, minutes=20)
-        print(now)
-        if now.hour == 0 and now.minute >= 30:
-            upload_pipeline(now)
-            delete_pipeline(now)
-            push_table()
-        time.sleep(60)
+    # gauth = GoogleAuth()
+    # gauth.LocalWebserverAuth()
+    #
+    # drive = GoogleDrive(gauth)
+    #
+    # folderName = 'hft_logs'
+    # logs_folder_id = '1OXIgEzY2zJKHqc5EbCqTVtLnJQaM_XmJ'
+    #
+    # while True:
+    #     now = datetime.utcnow() + timedelta(hours=7, minutes=20)
+    #     print(now)
+    #     if now.hour == 0 and now.minute >= 30:
+    #         upload_pipeline(now)
+    #         delete_pipeline(now)
+    #         push_table()
+    #     time.sleep(60)
