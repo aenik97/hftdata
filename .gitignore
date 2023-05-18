@@ -1,7 +1,6 @@
-
 .DS_Store
 *.log
 .idea/
-/gdrive api/client_secrets.json
 .ipynb_checkpoints
 *.ipynb
+backend/client_secrets.json

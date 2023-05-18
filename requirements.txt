@@ -1,0 +1,5 @@
+pydrive2==1.15.3
+rel==0.4.8
+Requests==2.30.0
+tqdm==4.65.0
+websocket_client==1.5.1

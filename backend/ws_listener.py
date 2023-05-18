@@ -1,13 +1,18 @@
+"""
+    cd backend && python ws_listener.py usdcusdt
+    cd backend && python ws_listener.py btcusdc
+"""
+
 import json
 import datetime
 import rel
 import requests
 import websocket
 import sys
+import os
 
-TRADE_SYMBOL = sys.argv[1]
+TRADE_SYMBOL = sys.argv[1].lower()
 
-TRADE_SYMBOL = "usdcusdt"
 STREAM_DEPTH = "depth"
 STREAM_DEPTH_100 = "depth@100ms"
 STREAM_DEPTH_10_LEVELS_100 = "depth10@100ms"
@@ -34,8 +39,8 @@ class LogWriter:
         self.websocket = None
 
     def get_current_logfile(self, now):
-        date_time = now.strftime("%d_%m_%Y")
-        log_path = f"{self.log_file_base_name}_{date_time}.log"
+        date_time = now.strftime("%Y-%m-%d")
+        log_path = os.path.join('logs', f'{self.log_file_base_name}_{date_time}.log')
 
         if self.log_file_date is None:
             self.log_file_date = date_time
@@ -61,7 +66,7 @@ class LogWriter:
         )
 
     def write_to_file(self, message):
-        now = datetime.datetime.utcnow() # + datetime.timedelta(hours=4, minutes=44)
+        now = datetime.datetime.utcnow()  # + datetime.timedelta(hours=4, minutes=44)
         self.get_current_logfile(now)
 
         line = {
@@ -92,25 +97,25 @@ class LogWriter:
 
 if __name__ == "__main__":
     lw_array = [
-        LogWriter(
-            stream_name=SOCKET_DEPTH,
-            log_file_base_name=STREAM_DEPTH
-        ),
+        # LogWriter(
+        #     stream_name=SOCKET_DEPTH,
+        #     log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH}'
+        # ),
         LogWriter(
             stream_name=SOCKET_DEPTH_100,
-            log_file_base_name=STREAM_DEPTH_100
+            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_100}'
         ),
-        LogWriter(
-            stream_name=SOCKET_DEPTH_10_LEVELS_100,
-            log_file_base_name=STREAM_DEPTH_10_LEVELS_100
-        ),
+        # LogWriter(
+        #     stream_name=SOCKET_DEPTH_10_LEVELS_100,
+        #     log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_10_LEVELS_100}'
+        # ),
         LogWriter(
             stream_name=SOCKET_DEPTH_20_LEVELS_100,
-            log_file_base_name=STREAM_DEPTH_20_LEVELS_100
+            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_DEPTH_20_LEVELS_100}'
         ),
         LogWriter(
             stream_name=SOCKET_BOOK_TICKER,
-            log_file_base_name=STREAM_BOOK_TICKER
+            log_file_base_name=f'{TRADE_SYMBOL}_{STREAM_BOOK_TICKER}'
         )
     ]
 
