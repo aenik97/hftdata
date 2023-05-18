@@ -1,5 +1,5 @@
 """
-    cd backend && python upload_files.py
+    cd backend && python upload_files.py <git_pat>
 """
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
@@ -9,6 +9,8 @@ import time
 from datetime import datetime, timedelta
 from csv import writer
 from os import popen
+import sys
+
 
 def download_file_to_drive(filename):
     my_file = drive.CreateFile({'title': filename, 'parents': [{'id': logs_folder_id}]})
@@ -70,8 +72,11 @@ def upload_pipeline(now):
 def delete_pipeline(now):
     pass
 
-def push_table():
 
+def push_table():
+    git_pat = sys.argv[1]
+    args = ['bash', 'autopush', git_pat]
+    popen(' '.join(args))
 
 
 if __name__ == '__main__':
