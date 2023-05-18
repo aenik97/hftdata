@@ -46,7 +46,7 @@ def upload_pipeline(now):
         stream_name = filename.split('_')[1]
 
 
-        with open('table.csv', 'a') as f_object:
+        with open('./table.csv', 'a') as f_object:
             arr = [trade_symbol, stream_name, prev_date, download_link]
             writer_object = writer(f_object)
             writer_object.writerow(arr)
