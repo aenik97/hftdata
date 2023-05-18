@@ -22,7 +22,7 @@ You can find data links in table.csv
 | ...     | ...         | ...        | ...         |
 
 <br>
-Pythonic way to download data in usage_example.py
+Python code to download data in usage_example.py
 
 
 ### FAQ
