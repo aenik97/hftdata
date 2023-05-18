@@ -80,21 +80,19 @@ def push_table():
 
 
 if __name__ == '__main__':
-    push_table()
+    gauth = GoogleAuth()
+    gauth.LocalWebserverAuth()
 
-    # gauth = GoogleAuth()
-    # gauth.LocalWebserverAuth()
-    #
-    # drive = GoogleDrive(gauth)
-    #
-    # folderName = 'hft_logs'
-    # logs_folder_id = '1OXIgEzY2zJKHqc5EbCqTVtLnJQaM_XmJ'
-    #
-    # while True:
-    #     now = datetime.utcnow() + timedelta(hours=7, minutes=20)
-    #     print(now)
-    #     if now.hour == 0 and now.minute >= 30:
-    #         upload_pipeline(now)
-    #         delete_pipeline(now)
-    #         push_table()
-    #     time.sleep(60)
+    drive = GoogleDrive(gauth)
+
+    folderName = 'hft_logs'
+    logs_folder_id = '1OXIgEzY2zJKHqc5EbCqTVtLnJQaM_XmJ'
+
+    while True:
+        now = datetime.utcnow()  # + timedelta(hours=7, minutes=20)
+        print(now)
+        if now.hour == 0 and now.minute >= 30:
+            upload_pipeline(now)
+            delete_pipeline(now)
+            push_table()
+        time.sleep(60)
